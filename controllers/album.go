@@ -14,6 +14,14 @@ func FetchAlbums(c *gin.Context) {
 	c.JSON(200, &albums)
 }
 
+func FetchAlbumById(c *gin.Context) {
+	var album models.Album
+
+	config.DB.Where("id = ?", c.Param("id")).Find(&album)
+
+	c.JSON(200, &album)
+}
+
 func CreateAlbum(c *gin.Context) {
 	var album models.Album
 
